@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "inertia-form-card",
+  "title": "Inertia Form Card",
+  "description": "A form section wrapper with Laravel validation summary support.",
+  "registryDependencies": [
+    "button",
+    "form-errors"
+  ],
+  "files": [
+    {
+      "path": "registry/laravel-inertia/components/inertia-form-card.tsx",
+      "content": "import * as React from \"react\";\n\nimport { Button } from \"@/Components/ui/button\";\nimport { FormErrors } from \"@/Components/form-errors\";\nimport { cn } from \"@/lib/utils\";\n\ntype ErrorBag = Record<string, string | string[] | undefined | null>;\n\ntype InertiaFormCardProps = React.ComponentProps<\"form\"> & {\n  title: string;\n  description?: string;\n  errors?: ErrorBag;\n  submitLabel?: string;\n  cancelHref?: string;\n  cancelLabel?: string;\n  linkComponent?: React.ElementType<{\n    href: string;\n    children: React.ReactNode;\n  }>;\n  footer?: React.ReactNode;\n};\n\nexport function InertiaFormCard({\n  title,\n  description,\n  errors,\n  submitLabel = \"Save changes\",\n  cancelHref,\n  cancelLabel = \"Cancel\",\n  linkComponent: Link = \"a\",\n  footer,\n  children,\n  className,\n  ...props\n}: InertiaFormCardProps) {\n  return (\n    <form\n      className={cn(\n        \"rounded-lg border bg-card text-card-foreground shadow-xs\",\n        className,\n      )}\n      {...props}\n    >\n      <div className=\"space-y-1.5 border-b p-6\">\n        <h2 className=\"text-lg font-semibold tracking-normal\">{title}</h2>\n        {description ? (\n          <p className=\"text-sm leading-6 text-muted-foreground\">\n            {description}\n          </p>\n        ) : null}\n      </div>\n      <div className=\"space-y-5 p-6\">\n        <FormErrors errors={errors} />\n        {children}\n      </div>\n      <div className=\"flex flex-col-reverse gap-2 border-t p-6 sm:flex-row sm:justify-end\">\n        {footer ?? (\n          <>\n            {cancelHref ? (\n              <Button asChild variant=\"outline\">\n                <Link href={cancelHref}>{cancelLabel}</Link>\n              </Button>\n            ) : null}\n            <Button type=\"submit\">{submitLabel}</Button>\n          </>\n        )}\n      </div>\n    </form>\n  );\n}\n",
+      "type": "registry:component",
+      "target": "@components/inertia-form-card.tsx"
+    }
+  ],
+  "type": "registry:component"
+}

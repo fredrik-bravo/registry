@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "resource-table",
+  "title": "Resource Table",
+  "description": "A responsive table/list component for Laravel resource indexes.",
+  "registryDependencies": [
+    "utils",
+    "empty-state"
+  ],
+  "files": [
+    {
+      "path": "registry/laravel-inertia/components/resource-table.tsx",
+      "content": "import * as React from \"react\";\n\nimport { EmptyState } from \"@/Components/empty-state\";\nimport { cn } from \"@/lib/utils\";\n\ntype ResourceColumn<TItem> = {\n  key: string;\n  header: React.ReactNode;\n  cell: (item: TItem) => React.ReactNode;\n  className?: string;\n};\n\ntype ResourceTableProps<TItem> = {\n  items: TItem[];\n  columns: ResourceColumn<TItem>[];\n  getRowKey: (item: TItem) => React.Key;\n  emptyTitle?: string;\n  emptyDescription?: string;\n  className?: string;\n};\n\nexport function ResourceTable<TItem>({\n  items,\n  columns,\n  getRowKey,\n  emptyTitle = \"No records found\",\n  emptyDescription = \"Try changing your filters or creating a new record.\",\n  className,\n}: ResourceTableProps<TItem>) {\n  if (items.length === 0) {\n    return <EmptyState title={emptyTitle} description={emptyDescription} />;\n  }\n\n  return (\n    <div\n      className={cn(\n        \"overflow-hidden rounded-lg border bg-card text-card-foreground\",\n        className,\n      )}\n    >\n      <div className=\"overflow-x-auto\">\n        <table className=\"w-full text-sm\">\n          <thead className=\"bg-muted/60 text-left text-xs font-medium uppercase text-muted-foreground\">\n            <tr>\n              {columns.map((column) => (\n                <th\n                  className={cn(\"px-4 py-3\", column.className)}\n                  key={column.key}\n                >\n                  {column.header}\n                </th>\n              ))}\n            </tr>\n          </thead>\n          <tbody className=\"divide-y\">\n            {items.map((item) => (\n              <tr\n                className=\"transition-colors hover:bg-muted/40\"\n                key={getRowKey(item)}\n              >\n                {columns.map((column) => (\n                  <td\n                    className={cn(\"px-4 py-3 align-middle\", column.className)}\n                    key={column.key}\n                  >\n                    {column.cell(item)}\n                  </td>\n                ))}\n              </tr>\n            ))}\n          </tbody>\n        </table>\n      </div>\n    </div>\n  );\n}\n\nexport type { ResourceColumn };\n",
+      "type": "registry:component",
+      "target": "@components/resource-table.tsx"
+    }
+  ],
+  "type": "registry:component"
+}

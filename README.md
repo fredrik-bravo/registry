@@ -1,36 +1,68 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Laravel Inertia shadcn Registry
+
+This is a custom [shadcn](https://ui.shadcn.com/docs/registry) registry hosted by Next.js for Laravel React Inertia applications.
 
 ## Getting Started
 
-First, run the development server:
+Build the registry JSON files:
+
+```bash
+npm run registry:build
+```
+
+Run the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) to inspect the registry. Built items are served from `/r`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Install the starter bundle in a Laravel React Inertia app:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npx shadcn@latest add http://localhost:3000/r/index.json
+```
 
-## Learn More
+Install a single item:
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+npx shadcn@latest add http://localhost:3000/r/inertia-page-shell.json
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Laravel Inertia Notes
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- Components avoid Next.js APIs, server components, and `next/link`.
+- Link-aware components accept a `linkComponent` prop, so you can pass `Link` from `@inertiajs/react`.
+- Registry file targets use `@components`, `@ui`, and `@lib` placeholders so installs follow the consumer project's `components.json` aliases.
+- The base item sets `rsc` to `false` and defaults aliases toward common Laravel paths.
 
-## Deploy on Vercel
+Example usage with Inertia's `Link`:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```tsx
+import { Link } from "@inertiajs/react";
+import { InertiaPageShell } from "@/Components/inertia-page-shell";
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+export default function UsersIndex() {
+  return (
+    <InertiaPageShell
+      title="Users"
+      description="Manage application access."
+      linkComponent={Link}
+      breadcrumbs={[
+        { label: "Dashboard", href: "/dashboard" },
+        { label: "Users" },
+      ]}
+      actions={[{ label: "Create user", href: "/users/create" }]}
+    >
+      {/* page content */}
+    </InertiaPageShell>
+  );
+}
+```
+
+## Registry Source
+
+- `registry.json` defines registry metadata and items.
+- `registry/laravel-inertia` contains source files used by `shadcn build`.
+- `public/r` is generated output and can be regenerated at any time.

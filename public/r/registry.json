@@ -1,0 +1,243 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "laravel-inertia",
+  "homepage": "http://localhost:3000",
+  "items": [
+    {
+      "name": "index",
+      "type": "registry:item",
+      "title": "Laravel Inertia Kit",
+      "description": "Install the base config and starter components for Laravel React Inertia applications.",
+      "registryDependencies": [
+        "laravel-inertia-base",
+        "button",
+        "inertia-page-shell",
+        "form-errors",
+        "empty-state",
+        "inertia-form-card",
+        "resource-table",
+        "confirm-dialog",
+        "users-resource-page"
+      ]
+    },
+    {
+      "name": "laravel-inertia-base",
+      "type": "registry:base",
+      "title": "Laravel Inertia Base",
+      "description": "A shadcn base configuration tuned for Laravel React Inertia projects.",
+      "config": {
+        "style": "laravel-inertia",
+        "iconLibrary": "lucide",
+        "rsc": false,
+        "tsx": true,
+        "tailwind": {
+          "baseColor": "zinc",
+          "css": "resources/css/app.css"
+        },
+        "aliases": {
+          "components": "@/Components",
+          "ui": "@/Components/ui",
+          "lib": "@/lib",
+          "hooks": "@/hooks"
+        }
+      },
+      "dependencies": [
+        "class-variance-authority",
+        "clsx",
+        "tailwind-merge",
+        "@radix-ui/react-slot",
+        "lucide-react"
+      ],
+      "registryDependencies": ["utils", "button"],
+      "cssVars": {
+        "light": {
+          "background": "oklch(1 0 0)",
+          "foreground": "oklch(0.141 0.005 285.823)",
+          "card": "oklch(1 0 0)",
+          "card-foreground": "oklch(0.141 0.005 285.823)",
+          "popover": "oklch(1 0 0)",
+          "popover-foreground": "oklch(0.141 0.005 285.823)",
+          "primary": "oklch(0.546 0.245 262.881)",
+          "primary-foreground": "oklch(0.97 0.014 254.604)",
+          "secondary": "oklch(0.967 0.001 286.375)",
+          "secondary-foreground": "oklch(0.21 0.006 285.885)",
+          "muted": "oklch(0.967 0.001 286.375)",
+          "muted-foreground": "oklch(0.552 0.016 285.938)",
+          "accent": "oklch(0.967 0.001 286.375)",
+          "accent-foreground": "oklch(0.21 0.006 285.885)",
+          "destructive": "oklch(0.577 0.245 27.325)",
+          "border": "oklch(0.92 0.004 286.32)",
+          "input": "oklch(0.92 0.004 286.32)",
+          "ring": "oklch(0.746 0.16 232.661)"
+        },
+        "dark": {
+          "background": "oklch(0.141 0.005 285.823)",
+          "foreground": "oklch(0.985 0 0)",
+          "card": "oklch(0.21 0.006 285.885)",
+          "card-foreground": "oklch(0.985 0 0)",
+          "popover": "oklch(0.21 0.006 285.885)",
+          "popover-foreground": "oklch(0.985 0 0)",
+          "primary": "oklch(0.707 0.165 254.624)",
+          "primary-foreground": "oklch(0.97 0.014 254.604)",
+          "secondary": "oklch(0.274 0.006 286.033)",
+          "secondary-foreground": "oklch(0.985 0 0)",
+          "muted": "oklch(0.274 0.006 286.033)",
+          "muted-foreground": "oklch(0.705 0.015 286.067)",
+          "accent": "oklch(0.274 0.006 286.033)",
+          "accent-foreground": "oklch(0.985 0 0)",
+          "destructive": "oklch(0.704 0.191 22.216)",
+          "border": "oklch(1 0 0 / 10%)",
+          "input": "oklch(1 0 0 / 15%)",
+          "ring": "oklch(0.707 0.165 254.624)"
+        }
+      },
+      "css": {
+        "@layer base": {
+          "*": {
+            "@apply border-border outline-ring/50": {}
+          },
+          "body": {
+            "@apply bg-background text-foreground": {}
+          }
+        }
+      }
+    },
+    {
+      "name": "utils",
+      "type": "registry:lib",
+      "title": "Utilities",
+      "description": "Class name merging utilities for shadcn components.",
+      "dependencies": ["clsx", "tailwind-merge"],
+      "files": [
+        {
+          "path": "registry/laravel-inertia/lib/utils.ts",
+          "type": "registry:lib",
+          "target": "@lib/utils.ts"
+        }
+      ]
+    },
+    {
+      "name": "button",
+      "type": "registry:ui",
+      "title": "Button",
+      "description": "A typed button primitive with variants, sizes, and Radix Slot composition.",
+      "dependencies": ["@radix-ui/react-slot", "class-variance-authority"],
+      "registryDependencies": ["utils"],
+      "files": [
+        {
+          "path": "registry/laravel-inertia/ui/button.tsx",
+          "type": "registry:ui",
+          "target": "@ui/button.tsx"
+        }
+      ]
+    },
+    {
+      "name": "inertia-page-shell",
+      "type": "registry:component",
+      "title": "Inertia Page Shell",
+      "description": "A framework-neutral page shell for Laravel React Inertia screens with optional Link integration.",
+      "dependencies": ["lucide-react"],
+      "registryDependencies": ["button"],
+      "files": [
+        {
+          "path": "registry/laravel-inertia/components/inertia-page-shell.tsx",
+          "type": "registry:component",
+          "target": "@components/inertia-page-shell.tsx"
+        }
+      ]
+    },
+    {
+      "name": "form-errors",
+      "type": "registry:component",
+      "title": "Form Errors",
+      "description": "Accessible Laravel validation error summaries for React forms.",
+      "dependencies": ["lucide-react"],
+      "registryDependencies": ["utils"],
+      "files": [
+        {
+          "path": "registry/laravel-inertia/components/form-errors.tsx",
+          "type": "registry:component",
+          "target": "@components/form-errors.tsx"
+        }
+      ]
+    },
+    {
+      "name": "empty-state",
+      "type": "registry:component",
+      "title": "Empty State",
+      "description": "A compact empty state component for dashboards, lists, and resource pages.",
+      "dependencies": ["lucide-react"],
+      "registryDependencies": ["button"],
+      "files": [
+        {
+          "path": "registry/laravel-inertia/components/empty-state.tsx",
+          "type": "registry:component",
+          "target": "@components/empty-state.tsx"
+        }
+      ]
+    },
+    {
+      "name": "inertia-form-card",
+      "type": "registry:component",
+      "title": "Inertia Form Card",
+      "description": "A form section wrapper with Laravel validation summary support.",
+      "registryDependencies": ["button", "form-errors"],
+      "files": [
+        {
+          "path": "registry/laravel-inertia/components/inertia-form-card.tsx",
+          "type": "registry:component",
+          "target": "@components/inertia-form-card.tsx"
+        }
+      ]
+    },
+    {
+      "name": "resource-table",
+      "type": "registry:component",
+      "title": "Resource Table",
+      "description": "A responsive table/list component for Laravel resource indexes.",
+      "registryDependencies": ["utils", "empty-state"],
+      "files": [
+        {
+          "path": "registry/laravel-inertia/components/resource-table.tsx",
+          "type": "registry:component",
+          "target": "@components/resource-table.tsx"
+        }
+      ]
+    },
+    {
+      "name": "confirm-dialog",
+      "type": "registry:component",
+      "title": "Confirm Dialog",
+      "description": "A Radix Dialog confirmation modal for destructive resource actions.",
+      "dependencies": ["@radix-ui/react-dialog", "lucide-react"],
+      "registryDependencies": ["button"],
+      "files": [
+        {
+          "path": "registry/laravel-inertia/components/confirm-dialog.tsx",
+          "type": "registry:component",
+          "target": "@components/confirm-dialog.tsx"
+        }
+      ]
+    },
+    {
+      "name": "users-resource-page",
+      "type": "registry:block",
+      "title": "Users Resource Page",
+      "description": "An Inertia-style resource page example combining shell, table, form errors, and confirmation dialog.",
+      "dependencies": ["lucide-react"],
+      "registryDependencies": [
+        "inertia-page-shell",
+        "resource-table",
+        "inertia-form-card",
+        "confirm-dialog"
+      ],
+      "files": [
+        {
+          "path": "registry/laravel-inertia/blocks/users-resource-page.tsx",
+          "type": "registry:block",
+          "target": "@components/examples/users-resource-page.tsx"
+        }
+      ]
+    }
+  ]
+}
