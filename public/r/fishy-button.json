@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "fishy-button",
+  "title": "Fishy Button",
+  "description": "A simple button component with a fishy theme",
+  "registryDependencies": [
+    "@bravo/button"
+  ],
+  "files": [
+    {
+      "path": "registry/laravel-inertia/components/fishy-button.tsx",
+      "content": "import { Button } from \"@/components/ui/button\";\n\nexport function FishyButton() {\n  return <Button className=\"bg-blue-800\">Fish</Button>;\n}\n",
+      "type": "registry:component"
+    }
+  ],
+  "type": "registry:component"
+}

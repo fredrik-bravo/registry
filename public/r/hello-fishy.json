@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "hello-fishy",
+  "title": "Hello Fishy",
+  "description": "A simple block that alerts 'fisksås'",
+  "registryDependencies": [
+    "@bravo/button"
+  ],
+  "files": [
+    {
+      "path": "registry/laravel-inertia/blocks/hello-fishy.tsx",
+      "content": "import { Button } from \"@/components/ui/button\";\n\nexport function HelloFishy() {\n  return (\n    <div className=\"p-8 bg-neutral-300\">\n      <h1 className=\"text-2xl font-bold mb-4\">Fisksås</h1>\n      <Button onClick={() => alert(\"fisksås\")}>Hello Fishy</Button>\n    </div>\n  );\n}\n",
+      "type": "registry:block"
+    }
+  ],
+  "type": "registry:block"
+}

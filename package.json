@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "registry:build": "shadcn build"
+    "registry:clean": "rm -rf public/r",
+    "registry:build": "npm run registry:clean && shadcn build"
   },
   "dependencies": {
     "@radix-ui/react-dialog": "^1.1.15",

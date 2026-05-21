@@ -19,6 +19,7 @@
       }
     ],
     "paths": {
+      "@/components/ui/*": ["./registry/laravel-inertia/ui/*"],
       "@/Components/ui/*": ["./registry/laravel-inertia/ui/*"],
       "@/Components/*": ["./registry/laravel-inertia/components/*"],
       "@/lib/*": ["./registry/laravel-inertia/lib/*"],
