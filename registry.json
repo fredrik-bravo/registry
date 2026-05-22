@@ -12,8 +12,7 @@
       "files": [
         {
           "path": "registry/laravel-inertia/lib/utils.ts",
-          "type": "registry:lib",
-          "target": "@/lib/utils.ts"
+          "type": "registry:lib"
         }
       ]
     },
@@ -27,8 +26,7 @@
       "files": [
         {
           "path": "registry/laravel-inertia/ui/button.tsx",
-          "type": "registry:ui",
-          "target": "@/Components/ui/button.tsx"
+          "type": "registry:ui"
         }
       ]
     },

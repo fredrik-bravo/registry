@@ -9,7 +9,7 @@
   "files": [
     {
       "path": "registry/laravel-inertia/components/fishy-button.tsx",
-      "content": "import { Button } from \"@/components/ui/button\";\n\nexport function FishyButton() {\n  return <Button className=\"bg-blue-800\">Fish</Button>;\n}\n",
+      "content": "import { Button } from \"@/components/ui/button\";\n\nexport function FishyButton() {\n  return (\n    <Button onClick={() => alert(\"snarf snarf linus\")} className=\"bg-blue-800\">\n      Fish\n    </Button>\n  );\n}\n",
       "type": "registry:component"
     }
   ],

@@ -4,5 +4,16 @@
       "fileMatch": ["registry.json"],
       "url": "https://ui.shadcn.com/schema/registry.json"
     }
+  ],
+  "workbench.colorCustomizations": {
+    "titleBar.activeBackground": "#e7b616",
+    "titleBar.activeForeground": "#000000",
+    "titleBar.inactiveBackground": "#daac17",
+    "titleBar.inactiveForeground": "#333333"
+  },
+  "tailwindCSS.experimental.classRegex": [
+    ["cn\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"],
+    ["clsx\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"],
+    ["cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"]
   ]
 }
