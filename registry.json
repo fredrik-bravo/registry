@@ -44,6 +44,19 @@
       ]
     },
     {
+      "name": "braavos-hero",
+      "type": "registry:block",
+      "title": "Braavos Hero",
+      "description": "A frontend hero block for laravel-braavos-hero content data.",
+      "registryDependencies": ["@bravo/utils"],
+      "files": [
+        {
+          "path": "registry/laravel-inertia/blocks/braavos-hero.tsx",
+          "type": "registry:block"
+        }
+      ]
+    },
+    {
       "name": "fishy-button",
       "type": "registry:component",
       "title": "Fishy Button",

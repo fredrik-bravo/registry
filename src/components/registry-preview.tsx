@@ -3,9 +3,14 @@
 import type { ComponentType } from "react";
 
 import { FishyButton } from "@/Components/fishy-button";
+import {
+  BraavosHero,
+  braavosHeroPreviewData,
+} from "../../registry/laravel-inertia/blocks/braavos-hero";
 import { HelloFishy } from "../../registry/laravel-inertia/blocks/hello-fishy";
 
 const previews: Record<string, ComponentType> = {
+  "braavos-hero": () => <BraavosHero data={braavosHeroPreviewData} />,
   "fishy-button": FishyButton,
   "hello-fishy": HelloFishy,
 };
