@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "site-nav",
+  "title": "Site Nav",
+  "description": "A desktop site navigation component built with shadcn Navigation Menu.",
+  "registryDependencies": [
+    "@bravo/navigation-menu"
+  ],
+  "files": [
+    {
+      "path": "registry/laravel-inertia/components/site-nav.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\n\nimport {\n  NavigationMenu,\n  NavigationMenuContent,\n  NavigationMenuItem,\n  NavigationMenuLink,\n  NavigationMenuList,\n  NavigationMenuTrigger,\n  navigationMenuTriggerStyle,\n} from \"@/components/ui/navigation-menu\";\n\nexport type LinkComponent = React.ElementType<{\n  href: string;\n  className?: string;\n  children?: React.ReactNode;\n}>;\n\nexport type SiteHeaderNavItem = {\n  title: string;\n  href: string;\n  description?: string;\n  items?: Array<{\n    title: string;\n    href: string;\n    description?: string;\n  }>;\n};\n\nexport type SiteNavProps = {\n  items: SiteHeaderNavItem[];\n  linkComponent?: LinkComponent;\n  className?: string;\n};\n\nexport function SiteNav({ items, linkComponent, className }: SiteNavProps) {\n  const Link = linkComponent ?? \"a\";\n\n  return (\n    <NavigationMenu className={className}>\n      <NavigationMenuList>\n        {items.map((item) => (\n          <NavigationMenuItem key={item.title}>\n            {item.items?.length ? (\n              <>\n                <NavigationMenuTrigger>{item.title}</NavigationMenuTrigger>\n                <NavigationMenuContent>\n                  <ul className=\"grid w-100 gap-2 p-2 md:w-125 md:grid-cols-2\">\n                    {item.items.map((child) => (\n                      <li key={child.title}>\n                        <NavigationMenuLink asChild>\n                          <Link\n                            href={child.href}\n                            className=\"block rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground\"\n                          >\n                            <span className=\"text-sm font-medium leading-none\">\n                              {child.title}\n                            </span>\n                            {child.description ? (\n                              <span className=\"mt-2 line-clamp-2 block text-sm leading-5 text-muted-foreground\">\n                                {child.description}\n                              </span>\n                            ) : null}\n                          </Link>\n                        </NavigationMenuLink>\n                      </li>\n                    ))}\n                  </ul>\n                </NavigationMenuContent>\n              </>\n            ) : (\n              <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>\n                <Link href={item.href}>{item.title}</Link>\n              </NavigationMenuLink>\n            )}\n          </NavigationMenuItem>\n        ))}\n      </NavigationMenuList>\n    </NavigationMenu>\n  );\n}",
+      "type": "registry:component"
+    }
+  ],
+  "type": "registry:component"
+}

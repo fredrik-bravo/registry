@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "theme-selector",
+  "title": "Theme Selector",
+  "description": "A light, dark, and system theme selector built with shadcn Dropdown Menu.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "@bravo/button",
+    "@bravo/dropdown-menu"
+  ],
+  "files": [
+    {
+      "path": "registry/laravel-inertia/components/theme-selector.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { MonitorIcon, MoonIcon, SunIcon } from \"lucide-react\";\n\nimport { Button } from \"@/components/ui/button\";\nimport {\n  DropdownMenu,\n  DropdownMenuContent,\n  DropdownMenuLabel,\n  DropdownMenuRadioGroup,\n  DropdownMenuRadioItem,\n  DropdownMenuSeparator,\n  DropdownMenuTrigger,\n} from \"@/components/ui/dropdown-menu\";\n\ntype ThemeMode = \"light\" | \"dark\" | \"system\";\n\nexport type ThemeSelectorProps = {\n  storageKey?: string;\n};\n\nexport function ThemeSelector({ storageKey = \"theme\" }: ThemeSelectorProps) {\n  const [theme, setTheme] = React.useState<ThemeMode>(() => {\n    if (typeof window === \"undefined\") {\n      return \"system\";\n    }\n\n    const storedTheme = window.localStorage.getItem(storageKey);\n\n    if (storedTheme === \"light\" || storedTheme === \"dark\" || storedTheme === \"system\") {\n      return storedTheme;\n    }\n\n    return \"system\";\n  });\n\n  React.useEffect(() => {\n    const mediaQuery = window.matchMedia(\"(prefers-color-scheme: dark)\");\n\n    function applyTheme() {\n      const isDark = theme === \"dark\" || (theme === \"system\" && mediaQuery.matches);\n\n      document.documentElement.classList.toggle(\"dark\", isDark);\n    }\n\n    window.localStorage.setItem(storageKey, theme);\n    applyTheme();\n    mediaQuery.addEventListener(\"change\", applyTheme);\n\n    return () => mediaQuery.removeEventListener(\"change\", applyTheme);\n  }, [storageKey, theme]);\n\n  const Icon = theme === \"dark\" ? MoonIcon : theme === \"light\" ? SunIcon : MonitorIcon;\n\n  return (\n    <DropdownMenu>\n      <DropdownMenuTrigger asChild>\n        <Button variant=\"outline\" size=\"icon\">\n          <Icon data-icon=\"inline-start\" />\n          <span className=\"sr-only\">Select theme</span>\n        </Button>\n      </DropdownMenuTrigger>\n      <DropdownMenuContent align=\"end\" className=\"w-40\">\n        <DropdownMenuLabel>Theme</DropdownMenuLabel>\n        <DropdownMenuSeparator />\n        <DropdownMenuRadioGroup\n          value={theme}\n          onValueChange={(value) => setTheme(value as ThemeMode)}\n        >\n          <DropdownMenuRadioItem value=\"light\">\n            <SunIcon />\n            Light\n          </DropdownMenuRadioItem>\n          <DropdownMenuRadioItem value=\"dark\">\n            <MoonIcon />\n            Dark\n          </DropdownMenuRadioItem>\n          <DropdownMenuRadioItem value=\"system\">\n            <MonitorIcon />\n            System\n          </DropdownMenuRadioItem>\n        </DropdownMenuRadioGroup>\n      </DropdownMenuContent>\n    </DropdownMenu>\n  );\n}",
+      "type": "registry:component"
+    }
+  ],
+  "type": "registry:component"
+}

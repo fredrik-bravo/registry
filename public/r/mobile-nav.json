@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "mobile-nav",
+  "title": "Mobile Nav",
+  "description": "A mobile site navigation component built with shadcn Sheet.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "@bravo/button",
+    "@bravo/sheet",
+    "@bravo/site-nav"
+  ],
+  "files": [
+    {
+      "path": "registry/laravel-inertia/components/mobile-nav.tsx",
+      "content": "\"use client\";\n\nimport { MenuIcon } from \"lucide-react\";\n\nimport { Button } from \"@/components/ui/button\";\nimport {\n  Sheet,\n  SheetClose,\n  SheetContent,\n  SheetDescription,\n  SheetHeader,\n  SheetTitle,\n  SheetTrigger,\n} from \"@/components/ui/sheet\";\nimport type { LinkComponent, SiteHeaderNavItem } from \"@/components/site-nav\";\n\nexport type MobileNavProps = {\n  brand?: string;\n  brandHref?: string;\n  navItems: SiteHeaderNavItem[];\n  linkComponent?: LinkComponent;\n};\n\nexport function MobileNav({\n  brand = \"Acme\",\n  brandHref = \"/\",\n  navItems,\n  linkComponent,\n}: MobileNavProps) {\n  const Link = linkComponent ?? \"a\";\n\n  return (\n    <Sheet>\n      <SheetTrigger asChild>\n        <Button className=\"lg:hidden\" variant=\"ghost\" size=\"icon\">\n          <MenuIcon data-icon=\"inline-start\" />\n          <span className=\"sr-only\">Open navigation</span>\n        </Button>\n      </SheetTrigger>\n      <SheetContent side=\"left\" className=\"w-80 p-0\">\n        <SheetHeader className=\"border-b p-4 text-left\">\n          <SheetTitle>\n            <SheetClose asChild>\n              <Link href={brandHref} className=\"inline-flex items-center gap-2\">\n                <span className=\"flex size-8 items-center justify-center rounded-md bg-primary text-sm font-semibold text-primary-foreground\">\n                  {brand.slice(0, 1).toUpperCase()}\n                </span>\n                <span>{brand}</span>\n              </Link>\n            </SheetClose>\n          </SheetTitle>\n          <SheetDescription className=\"sr-only\">\n            Primary site navigation\n          </SheetDescription>\n        </SheetHeader>\n\n        <nav className=\"flex flex-1 flex-col gap-1 overflow-y-auto p-4\">\n          {navItems.map((item) => (\n            <div key={item.title} className=\"flex flex-col gap-1\">\n              <SheetClose asChild>\n                <Link\n                  href={item.href}\n                  className=\"rounded-md px-3 py-2 text-sm font-medium hover:bg-accent hover:text-accent-foreground\"\n                >\n                  {item.title}\n                </Link>\n              </SheetClose>\n              {item.items?.length ? (\n                <div className=\"ml-3 flex flex-col gap-1 border-l pl-3\">\n                  {item.items.map((child) => (\n                    <SheetClose asChild key={child.title}>\n                      <Link\n                        href={child.href}\n                        className=\"rounded-md px-3 py-2 text-sm text-muted-foreground hover:bg-accent hover:text-accent-foreground\"\n                      >\n                        {child.title}\n                      </Link>\n                    </SheetClose>\n                  ))}\n                </div>\n              ) : null}\n            </div>\n          ))}\n        </nav>\n      </SheetContent>\n    </Sheet>\n  );\n}",
+      "type": "registry:component"
+    }
+  ],
+  "type": "registry:component"
+}

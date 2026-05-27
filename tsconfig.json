@@ -20,6 +20,15 @@
     ],
     "paths": {
       "@/components/ui/*": ["./registry/laravel-inertia/ui/*"],
+      "@/components/mobile-nav": [
+        "./registry/laravel-inertia/components/mobile-nav"
+      ],
+      "@/components/site-nav": [
+        "./registry/laravel-inertia/components/site-nav"
+      ],
+      "@/components/theme-selector": [
+        "./registry/laravel-inertia/components/theme-selector"
+      ],
       "@/Components/ui/*": ["./registry/laravel-inertia/ui/*"],
       "@/Components/*": ["./registry/laravel-inertia/components/*"],
       "@/lib/*": ["./registry/laravel-inertia/lib/*"],

@@ -31,6 +31,52 @@
       ]
     },
     {
+      "name": "dropdown-menu",
+      "type": "registry:ui",
+      "title": "Dropdown Menu",
+      "description": "A menu primitive for grouped actions and option sets.",
+      "dependencies": ["@radix-ui/react-dropdown-menu", "lucide-react"],
+      "registryDependencies": ["@bravo/utils"],
+      "files": [
+        {
+          "path": "registry/laravel-inertia/ui/dropdown-menu.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "navigation-menu",
+      "type": "registry:ui",
+      "title": "Navigation Menu",
+      "description": "A responsive navigation primitive for top-level site links.",
+      "dependencies": [
+        "@radix-ui/react-navigation-menu",
+        "class-variance-authority",
+        "lucide-react"
+      ],
+      "registryDependencies": ["@bravo/utils"],
+      "files": [
+        {
+          "path": "registry/laravel-inertia/ui/navigation-menu.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "sheet",
+      "type": "registry:ui",
+      "title": "Sheet",
+      "description": "A side panel primitive built on Radix Dialog.",
+      "dependencies": ["@radix-ui/react-dialog", "lucide-react"],
+      "registryDependencies": ["@bravo/utils"],
+      "files": [
+        {
+          "path": "registry/laravel-inertia/ui/sheet.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
       "name": "hello-fishy",
       "type": "registry:block",
       "title": "Hello Fishy",
@@ -40,6 +86,69 @@
         {
           "path": "registry/laravel-inertia/blocks/hello-fishy.tsx",
           "type": "registry:block"
+        }
+      ]
+    },
+    {
+      "name": "site-header",
+      "type": "registry:block",
+      "title": "Site Header",
+      "description": "A responsive header block with desktop navigation, mobile navigation, and a light/dark/system theme selector.",
+      "registryDependencies": [
+        "@bravo/button",
+        "@bravo/mobile-nav",
+        "@bravo/site-nav",
+        "@bravo/theme-selector"
+      ],
+      "files": [
+        {
+          "path": "registry/laravel-inertia/blocks/site-header.tsx",
+          "type": "registry:block"
+        }
+      ]
+    },
+    {
+      "name": "site-nav",
+      "type": "registry:component",
+      "title": "Site Nav",
+      "description": "A desktop site navigation component built with shadcn Navigation Menu.",
+      "registryDependencies": ["@bravo/navigation-menu"],
+      "files": [
+        {
+          "path": "registry/laravel-inertia/components/site-nav.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "mobile-nav",
+      "type": "registry:component",
+      "title": "Mobile Nav",
+      "description": "A mobile site navigation component built with shadcn Sheet.",
+      "dependencies": ["lucide-react"],
+      "registryDependencies": [
+        "@bravo/button",
+        "@bravo/sheet",
+        "@bravo/site-nav"
+      ],
+      "files": [
+        {
+          "path": "registry/laravel-inertia/components/mobile-nav.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "theme-selector",
+      "type": "registry:component",
+      "title": "Theme Selector",
+      "description": "A light, dark, and system theme selector built with shadcn Dropdown Menu.",
+      "dependencies": ["lucide-react"],
+      "registryDependencies": ["@bravo/button", "@bravo/dropdown-menu"],
+      "files": [
+        {
+          "path": "registry/laravel-inertia/components/theme-selector.tsx",
+          "type": "registry:component"
         }
       ]
     },

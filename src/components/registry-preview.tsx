@@ -8,11 +8,13 @@ import {
   braavosHeroPreviewData,
 } from "../../registry/laravel-inertia/blocks/braavos-hero";
 import { HelloFishy } from "../../registry/laravel-inertia/blocks/hello-fishy";
+import { SiteHeader } from "../../registry/laravel-inertia/blocks/site-header";
 
 const previews: Record<string, ComponentType> = {
   "braavos-hero": () => <BraavosHero data={braavosHeroPreviewData} />,
   "fishy-button": FishyButton,
   "hello-fishy": HelloFishy,
+  "site-header": () => <SiteHeader brand="Bravo" />,
 };
 
 export function RegistryPreview({ name }: { name: string }) {

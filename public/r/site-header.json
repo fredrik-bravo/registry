@@ -1,0 +1,20 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "site-header",
+  "title": "Site Header",
+  "description": "A responsive header block with desktop navigation, mobile navigation, and a light/dark/system theme selector.",
+  "registryDependencies": [
+    "@bravo/button",
+    "@bravo/mobile-nav",
+    "@bravo/site-nav",
+    "@bravo/theme-selector"
+  ],
+  "files": [
+    {
+      "path": "registry/laravel-inertia/blocks/site-header.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\n\nimport { MobileNav } from \"@/components/mobile-nav\";\nimport { SiteNav, type LinkComponent, type SiteHeaderNavItem } from \"@/components/site-nav\";\nimport { ThemeSelector } from \"@/components/theme-selector\";\nimport { Button } from \"@/components/ui/button\";\nimport { cn } from \"@/lib/utils\";\n\nexport type { LinkComponent, SiteHeaderNavItem } from \"@/components/site-nav\";\n\nexport type SiteHeaderProps = {\n  brand?: string;\n  brandHref?: string;\n  navItems?: SiteHeaderNavItem[];\n  linkComponent?: LinkComponent;\n  className?: string;\n};\n\nconst defaultNavItems = [\n  {\n    title: \"Products\",\n    href: \"#products\",\n    items: [\n      {\n        title: \"Platform\",\n        href: \"#platform\",\n        description: \"A steady workspace for managing teams and content.\",\n      },\n      {\n        title: \"Analytics\",\n        href: \"#analytics\",\n        description: \"Readable reporting for daily operational decisions.\",\n      },\n      {\n        title: \"Automation\",\n        href: \"#automation\",\n        description: \"Practical workflows that keep repetitive tasks moving.\",\n      },\n      {\n        title: \"Integrations\",\n        href: \"#integrations\",\n        description: \"Connect the tools your team already relies on.\",\n      },\n    ],\n  },\n  {\n    title: \"Solutions\",\n    href: \"#solutions\",\n  },\n  {\n    title: \"Pricing\",\n    href: \"#pricing\",\n  },\n  {\n    title: \"Docs\",\n    href: \"#docs\",\n  },\n] satisfies SiteHeaderNavItem[];\n\nexport function SiteHeader({\n  brand = \"Acme\",\n  brandHref = \"/\",\n  navItems = defaultNavItems,\n  linkComponent,\n  className,\n}: SiteHeaderProps) {\n  const Link = linkComponent ?? \"a\";\n\n  return (\n    <header\n      className={cn(\n        \"sticky top-0 z-40 w-full border-b bg-background/95 backdrop-blur supports-backdrop-filter:bg-background/60\",\n        className,\n      )}\n    >\n      <div className=\"mx-auto flex h-16 w-full max-w-7xl items-center gap-3 px-4 sm:px-6 lg:px-8\">\n        <MobileNav\n          brand={brand}\n          brandHref={brandHref}\n          navItems={navItems}\n          linkComponent={Link}\n        />\n\n        <Link\n          href={brandHref}\n          className=\"flex min-w-0 items-center gap-2 font-semibold\"\n        >\n          <span className=\"flex size-8 shrink-0 items-center justify-center rounded-md bg-primary text-sm font-semibold text-primary-foreground\">\n            {brand.slice(0, 1).toUpperCase()}\n          </span>\n          <span className=\"truncate\">{brand}</span>\n        </Link>\n\n        <SiteNav\n          items={navItems}\n          linkComponent={Link}\n          className=\"ml-6 hidden lg:flex\"\n        />\n\n        <div className=\"ml-auto flex items-center gap-2\">\n          <ThemeSelector />\n          <Button className=\"hidden sm:inline-flex\" asChild>\n            <Link href=\"#contact\">Contact</Link>\n          </Button>\n        </div>\n      </div>\n    </header>\n  );\n}\n\nexport const siteHeaderPreviewNavItems = defaultNavItems;",
+      "type": "registry:block"
+    }
+  ],
+  "type": "registry:block"
+}
