@@ -7,7 +7,12 @@
   };
 
   outputs =
-    { nixpkgs, flake-utils, ... }:
+    {
+      nixpkgs,
+      flake-utils,
+      self,
+      ...
+    }:
     flake-utils.lib.eachDefaultSystem (
       system:
       let
@@ -38,6 +43,7 @@
             runHook postInstall
           '';
         };
+        packages.registry = self.packages."${system}".default;
       }
     );
 }
