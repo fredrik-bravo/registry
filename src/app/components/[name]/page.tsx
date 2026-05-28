@@ -3,13 +3,23 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import { RegistryPreview } from "@/components/registry-preview";
-import { getRegistryItem } from "../../../lib/registry";
+import { getRegistryItem, getRegistryItems } from "../../../lib/registry";
 
 type ComponentPageProps = {
   params: Promise<{
     name: string;
   }>;
 };
+
+export const dynamicParams = false;
+
+export async function generateStaticParams() {
+  const { blockItems, componentItems } = await getRegistryItems();
+
+  return [...componentItems, ...blockItems].map((item) => ({
+    name: item.name,
+  }));
+}
 
 export default async function ComponentPage({ params }: ComponentPageProps) {
   const { name } = await params;

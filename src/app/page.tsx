@@ -1,14 +1,11 @@
 import { ArrowUpRight, Code2, FileJson, Layers3 } from "lucide-react";
 import Link from "next/link";
-import { connection } from "next/server";
 import type { ReactNode } from "react";
 
 import { RegistryPreview } from "@/components/registry-preview";
 import { getRegistryItems, type RegistryItem } from "../lib/registry";
 
 export default async function Home() {
-  await connection();
-
   const { blockItems, componentItems } = await getRegistryItems();
 
   return (

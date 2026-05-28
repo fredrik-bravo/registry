@@ -52,4 +52,37 @@
   # git-hooks.hooks.shellcheck.enable = true;
 
   # See full reference at https://devenv.sh/reference/options/
+
+  services.nginx = {
+    enable = true;
+    httpConfig = ''
+      server {
+        listen 8080;
+        server_name localhost;
+
+        root ${config.devenv.root}/out;
+        index index.html;
+
+        location / {
+          try_files $uri $uri.html $uri/ =404;
+        }
+
+        location /_next/static/ {
+          expires 1y;
+          add_header Cache-Control "public, immutable";
+          try_files $uri =404;
+        }
+
+        location /r/ {
+          add_header Access-Control-Allow-Origin "*";
+          try_files $uri =404;
+        }
+
+        error_page 404 /404.html;
+        location = /404.html {
+          internal;
+        }
+      }
+    '';
+  };
 }
