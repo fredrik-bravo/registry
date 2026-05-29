@@ -66,3 +66,43 @@ export default function UsersIndex() {
 - `registry.json` defines registry metadata and items.
 - `registry/laravel-inertia` contains source files used by `shadcn build`.
 - `public/r` is generated output and can be regenerated at any time.
+
+# Features and Changes Needed for Production
+
+## Deployment
+
+Fix deployment with github action automation
+
+## Fix naming
+
+Change the name of registry to something bravomedia specific
+
+## Registry structure
+
+### Components
+
+- ui/ → base components (Button, Input, Dialog)
+- forms/ → form-related compositions
+- layouts/ → page layouts and sections
+- blocks/ → reusable modules, framework sections and pages
+- hooks/ → reusable custom React hooks for shared state, logic, and behavior
+- lib/ → shared utilities, helper functions, configuration, and core application logic
+
+## naming conventions
+
+Use predictable and descriptive names:
+
+- user-card.tsx
+- settings-form.tsx
+- dashboard-sidebar.tsx
+
+## Registry metadata
+
+Each registry item should include:
+
+- component name
+- description
+- dependencies
+- category/type
+- files included
+- optional demo/example usage
