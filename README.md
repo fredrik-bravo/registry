@@ -67,7 +67,7 @@ export default function UsersIndex() {
 - `registry/laravel-inertia` contains source files used by `shadcn build`.
 - `public/r` is generated output and can be regenerated at any time.
 
-# Features and Changes Needed for Production
+# Features and changes needed for production
 
 ## Deployment
 
